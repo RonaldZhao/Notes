@@ -1,0 +1,84 @@
+JSP&Servlet必会知识点：
+=============================== JSP ============================================
+JSP是一种java服务器端技术，它用于在网页上显示动态内容。
+  *Tomcat的配置及目录结构
+  *JSP的执行过程
+  *JSP的页面构成元素
+  *JSP的注释
+  *静态和动态include
+  *JSP标准标签库
+  *JSP的九大内痔对象
+    1.Out：一个缓冲的输出流，向客户端输出内容
+    2.page：当前JSP页面本身，它是java.lang.Object类的实例
+    3.request：提取浏览器提交的信息
+    4.response：服务器对客户的请求做出响应，向客户端发送数据
+    5.session：会话对象，session对象指的是客户端与服务器的一次对话
+    6.application：实现了用户间数据的共享，可存放全局变量。它开始于服务器的启动，直到服务器的关闭
+    7.pageContext：JSP页面上下文对象，提供了对JSP页面内所有内容的对象及名字空间的访问
+    8.config：代表JSP对应的servlet的配置信息
+    9.exception：是Throwable的实例，表示的是JSP的异常信息
+
+  JSP面试案例：
+    1.JSP有哪些内置对象？作用分别是什么？
+    2.JSP有哪些动作？作用分别是什么？
+      *jsp共有6中基本动作：
+        *jsp:include：在页面请求的时候引入一个文件
+        *jsp:useBean：寻找或者实例化一个JavaBean
+        *jsp:setProperty：设置JavaBean的属性
+        *jsp:getProperty：输出某个JavaBean的属性
+        *jsp:forward：把请求转到一个新的页面
+        *jsp:plugin：根据浏览器类型为Java插件生成OBJECT或EMBED标记
+    3.JSP中动态include与静态include的区别？
+      *动态include用jsp:include动作实现，它总是会检查所含文件中的变化，适合用于包含动态页面，并且可以带参数。例如：
+        <jsp:include page="include.jsp" flush="true" />
+      *静态include用include伪代码实现，不会检查所含文件的变化，适用于静态页面。例如：
+        <%@ include file="include.htm" %>
+    4.include指令与include动作的区别？
+      *include指令是编译时语法，也就是在编译的适合，把指令所指向的目标文件的内容拷贝到指令所在的位置，替换指令，
+       最终形成一个文件，所以在运行的时候只有一个文件。
+      *include动作是运行时语法，包含<jsp:include>动作的文件在执行这个标签的适合，会转向执行标签所指向的目标文件，
+       执行完目标文件之后，再接着执行标签后的内容，在运行的时候，设计到两个文件，就像方法调用一样。
+      *当一段代码确定会执行的时候使用<%@ include %>,当一段代码可能会执行的时候使用<jsp:include>.
+    5.Servlet与JSP的区别？
+      *jsp经过编译之后就是Servlet，也可以说jsp等于Servlet。
+      *jsp更擅长页面（表现），servlet更擅长逻辑编辑（最核心的区别）。
+      *在实际应用中采用servlet来控制业务流程，而采用JSP来生成动态网页。在struts框架中，JSP位于MVC设计模式的视图层，
+       而servlet位于控制层。
+
+=============================== Servlet ========================================
+Servlet是服务器端的小程序，用来接受来自网络的请求并做出响应。
+  *EL表达式
+  *JavaBean
+  *Servlet的生命周期
+  *Javax.servlet.jsp.tagext包中的类
+  *Session与Cookie
+  *XML的基本概念与使用方法
+  *MVC（Model View Controller）的处理过程
+
+==============================  JSP与Servlet知识点精华============================
+知识点：
+  *GET与POST请求的区别
+    1.安全性：GET比POST弱
+    2.提交内容大小：GET小于POST
+    3.请求响应速度：GET强于POST
+    4.调用方法：GET调用doGet方法，POST调用doPost方法
+  *Session与Cookie的区别
+    1.Session将信息保存在服务器上，而Cookie保存在客户端上
+    2.Session比Cookie更安全，但Session比Cookie更占资源
+    3.Session使用了Cookie的机制
+    4.Session是在服务器端，通过sessionid把数据保存在客户端
+    5.Session用cookie保存客户端数据，所以session依赖于cookie
+    6.如果浏览器不支持cookie，可以通过URL重写来实现
+    7.Cookie只能存String类型的数据，而Session可以存Object类型和简单数据类型的数据
+  *Servlet的生命周期
+    Servlet生命全过程依次为：
+      1.加载
+      2.实例化
+      3.初始化
+      4.处理请求
+      5.退出服务
+  *Servlet上下文对象
+    ServletContext：Servlet上下文对象
+      1.它是一个公共区域，可以被所有客户端共享
+      2.setAttribute()：向公共区域里存数据
+      3.getAttribute()：从公共区域里取数据

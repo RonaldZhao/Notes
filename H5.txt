@@ -1,0 +1,49 @@
+﻿HTML5特性简介：
+	1.用于绘画的canvas标签
+	2.用于媒介回放的video和audio元素
+	3.对本地离线储存的更好支持
+	4.新的特殊内容元素
+		如：article、footer、header、nav、section
+	5.新的表单控件
+		如：calendar、date、time、email、url、search
+	6.浏览器的支持
+		Safari、chrome、Firefox以及Opera包括IE9基本支持了HTML5
+		
+HTML5基础详解：
+	1.声明：<!DOCTYPE>
+		HTML 也有多个不同的版本，只有完全明白页面中使用的确切HTML版本，浏览器才能正确地完全显示出HTML页面。
+		
+Web Storage概述
+	在HTML5中，除了canvas属性之外，另一个新增的非常重要的功能是可以在客户端本地保存数据的Web Storage功能，
+	之前可以使用Cookies在客户端保存诸如用户名等简单用户信息，但通过长期使用，人们发现Cookies储存永久数据
+	存在几个问题。
+		-大小：Cookies的大小被限制在4kb
+		-带宽：Cookies是随HTTP事务一起被发送的，因此会浪费一部分发送Cookies时使用的带宽。
+		-复杂性：要正确的操纵Cookies是很困难的。
+	针对这些问题，HTML5重新提供了一种在客户端保存本地数据的功能——Web Storage。
+	
+Web Storage功能：
+	在Web上存储数据的功能，针对本地客户端而言，具体分为两种：
+		sessionStorage：
+			将数据保存在session对象中。session是指用户在浏览某个网站时，从进入网站到浏览器关闭所经过的
+			这段时间，也就是用户浏览这个网站所花费的时间。session对象可以用来保存在这段时间内要求保存
+			的任何数据。
+		localStorage：
+			将数据保存在客户端本地的硬件设备（硬盘）中，即使浏览器被关闭了，该数据依然存在，下一次打开
+			浏览器访问网站时仍然可以继续使用。
+本地数据库的基本概念;
+	在HTML5中，大大丰富了客户端可以存储的内容，添加了很多功能将原本必须保存在服务器上的数据转为保存在客
+	户端本地，从而大大提高了Web应用程序性能，减轻了服务器的负担，使web时代重新回到了“客户端为重，服务器
+	端为轻”的时代。在HTML5中，可以像访问本地文件那样轻松地对内置数据库进行直接访问。HTML5中内置了两种本
+	地数据库，一种为SQLLite，一种为indexedDB。
+indexedDB数据库的基本概念
+	在HTML5中，新增一种被称为“indexedDB”的数据库，该数据库是一种存储在客户端本地的NoSQL数据库。
+派生选择器：
+	如：li strong{color:red;}
+属性选择器 与 属性和值选择器:
+	如:
+		属性选择器：[title]{color:red;}
+		属性和值选择器：[title=te]{color:blue}
+CSS样式:轮廓：
+	如：p{outline-style:dotted;outline-color:red;outline-width:1px;}	//虚线的轮廓（外边框）
+
