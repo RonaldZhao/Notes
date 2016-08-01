@@ -1,0 +1,99 @@
+================================================================================
+|                Git的历史、特点等相关知识请自行百度，这里只讲解Git的使用               |
+================================================================================
+Git本地操作：
+  1.Git安装与简单配置
+    1.Git安装  -->  git-scm.com
+    2.Git自动完成
+      *tab键的使用
+    3.Git简单配置
+      *git的配置共有三个级别：
+        git config --system（优先级：低）
+        git config --global（优先级：中）
+        git config --local（优先级：高）
+
+      *配置用户名：git config --global user.name 你的用户名
+      *配置邮箱：git config --global user.email 你的邮箱
+      *以上两条配置用于在日志中显示提交修改的作者是谁
+
+      *查看git-config文档的三种方式：
+        git config --help
+        git help config
+        man git-config
+
+      *查看已经添加的用户名：(以下两种命令等价)
+        git config user.name
+        git config --get user.name
+
+      *显示配置信息
+        git config --list --global
+
+      *删除user
+        git config --global --unset user.name 要删除的用户名
+
+      *修改user.name
+        git config --global user.name 想要修改成的用户名
+
+      *为命令起别名
+        git config --global alias.别名 原命令
+          例如：git config --global alias.cm commit
+        如果原命令带参数则用下如命令：
+          git config --global alias.别名 “原命令 参数”
+          例如：git config --global alias.lol "log --oneline"
+
+  2.Git基本的工作流程
+    1.Git使用40个16进制字符的SHA-1 Hash来唯一标识对象。其对象有四种：
+      1.blob
+      2.tree
+      3.commit
+      4.tag
+    2.Git仓库
+      *git仓库有三个工作区：
+        1.working directory（工作区）
+        2.staging area（暂存区）
+        3.history repository（历史仓库）
+        *三个工作区的关系：
+                            stage files                comit
+          working directory——————————————>staging area——————————>history repository
+                  ↑                                                      ↓
+                  ↑                     checkout project                 ↓
+                   <—————————————————————————————————————————————————————
+      *初始化一个Git仓库：
+        git init
+        此命令会在执行此命令的当前文件夹中创建一个.git文件夹，是当前文件夹初始化为一个git仓库
+      *拷贝一个 Git 仓库到本地，让自己能够查看该项目，或者进行修改。
+        git clone 远程仓库的地址(https格式或ssh格式的)
+      *将文件添加到暂存区：
+        git add 文件名(多个文件中间用空格间隔)
+      *将当前工作区的所有文件全部添加到暂存区：
+        git add -A
+      *若使用-A命令时当前工作区有不需要被暂存的文件或目录，则在当前工作区添加.gitignore文件：
+        *首先要强调一点，这个文件的完整文件名就是“.gitignore”，注意最前面有个“.”。
+        *下面我们看看常用的规则示例：
+          /mtk/       过滤mtk整个文件夹(文件夹必须以/结尾，否则会被git认为是文件)
+          *.zip       过滤所有.zip文件
+          /mtk/do.c   过滤mtk目录下的do.c文件
+          *被过滤掉的文件就不会出现在你的GitHub库中了，当然本地库中还有，只是push的时候不会上传。
+        *gitignore还可以指定要将哪些文件添加到版本管理中：
+          !*.zip          不过滤所有.zip文件(如果文件是以!开头的需要先加一个\)
+          !/mtk/one.txt   不过滤mtk目录下的one.txt文件
+          *唯一的区别就是规则开头多了一个感叹号，Git会将满足这类规则的文件添加到版本管理中。
+      *将暂存区的更改提交：
+        git commit -m "此次修改的描述信息"
+      *查看当前工作区和暂存区的区别：
+        git status
+      *从暂存区撤回已添加的文件：
+        git rm --cached 文件名
+      *在工作区中重命名文件或移动文件：
+        git mv 文件名 路径或新文件名
+  3.Git本地分支与合并：
+    1.创建新分支：
+      git branch 新分支名
+    2.切换分支：
+      git checkout 分支名
+
+  4.查看与对比历史记录：
+    1.
+    2.
+    3.
+  
