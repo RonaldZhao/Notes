@@ -1,3 +1,63 @@
+Java 8新特性：lambda表达式
+
+Java 8终于引进了lambda表达式，这标志着Java往函数式编程又迈进了一小步。
+
+在Java 8以前的代码中，为了实现带一个方法的接口，往往需要定义一个匿名类并复写接口方法，代码显得
+很臃肿。比如常见的Comparator接口：
+
+String[] oldWay = "Improving code with Lambda expressions in Java 8".split(" ");
+Arrays.sort(oldWay, new Comparator<String>() {
+    @Override
+    public int compare(String s1, String s2) {
+        // 忽略大小写排序:
+        return s1.toLowerCase().compareTo(s2.toLowerCase());
+    }
+});
+System.out.println(String.join(", ", oldWay));
+
+对于只有一个方法的接口，在Java 8中，现在可以把它视为一个函数，用lambda表示式简化如下：
+
+String[] newWay = "Improving code with Lambda expressions in Java 8".split(" ");
+Arrays.sort(newWay, (s1, s2) -> {
+    return s1.toLowerCase().compareTo(s2.toLowerCase());
+});
+System.out.println(String.join(", ", newWay));
+
+Java 8没有引入新的关键字lambda，而是用()->{}这个奇怪的符号表示lambda函数。函数类型不需要申
+明，可以由接口的方法签名自动推导出来，对于上面的lambda函数：
+
+(s1, s2) -> {
+    return s1.toLowerCase().compareTo(s2.toLowerCase());
+});
+
+参数由Comparator<String>自动推导出String类型，返回值也必须符合接口的方法签名。
+
+实际上，lambda表达式最终也被编译为一个实现类，不过语法上做了简化。
+
+对于Java自带的标准库里的大量单一方法接口，很多都已经标记为@FunctionalInterface，表明该接口
+可以作为函数使用。
+
+以Runnable接口为例，很多时候干活的代码还没有定义class的代码多，现在可以用lambda实现：
+
+public static void main(String[] args) {
+    // old way:
+    Runnable oldRunnable = new Runnable() {
+        @Override
+        public void run() {
+            System.out.println(Thread.currentThread().getName() + ": Old Runnable");
+        }
+    };
+    Runnable newRunnable = () -> {
+        System.out.println(Thread.currentThread().getName() + ": New Lambda Runnable");
+    };
+    new Thread(oldRunnable).start();
+    new Thread(newRunnable).start();
+}
+
+在未来的Java代码中，会出现越来越多的()->{}表达式。
+文章来源：
+http://www.liaoxuefeng.com/article/001411306573093ce6ebcdd67624db98acedb2a905c8ea4000
+================================================================================
 多态性的体现：
   1.方法的重载和重写
   2.对象的多态性
@@ -19,6 +79,160 @@
       格式：访问权限 <泛型标识> 泛型标识 方法名称([泛型标识 参数名称])
       使用：直接在参数中传递任何类型的数据
   8.泛型数组：在使用泛型方法的时候，也可以传递或返回一个泛型数组
+================================================================================
+Java中的IO操作:
+  1.Java IO简介
+    IO也写作“I/O”，也可理解为In和Out，即输入与输出。
+    所以，IO体系的基本功能就是：读和写。
+    IO流：
+      作用：读写设备上的数据，硬盘文件、内存、键盘、网络...
+      根据数据的走向，可分为：输入流、输出流
+      根据处理的数据类型，可分为：字节流、字符流。
+        字节流：可以处理所有类型的数据。在Java中对应的类都以”Stream“结尾。
+        字符流：只能处理纯文本数据。在Java中对应的类都以”Reader“或”Writer”结尾。
+  2.字符、字节与编码：
+    1.字节：是通过网络传输信息或在硬盘或内存中存储信息的单位，是计算机信息技术用于计量存储容量
+      和传输容量的一种计量单位。
+    2.字符(char)：是人们使用的记号，是抽象意义上的一个符号。
+    3.字符集(charset)：也称作编码。
+    4.ANSI
+    5.Unicode
+  3.使用字节流读写数据
+    FileInputStream fis = new FileInputStream("test.txt");fis.close();
+    FileOutputStream fos = new FileOutputStream("test.txt");fos.close();
+  4.使用带缓冲的字节流读写数据
+    带有缓冲的字节流的读写速度要比不带缓冲的快很多。
+  5.使用字符流读写数据
+  6.使用带有缓冲的字符流读写数据
+  7.FileReader与FileWriter
+  8.RandomAccessFile随机文件读写
+  9.使用Apache IO库操作IO与文件
+===============================================================================
+Java多线程编程:
+  1.线程与进程
+    *线程：程序中单独顺序的控制流
+      线程本身依靠程序运行；
+      线程是程序中的顺序控制流，只能使用分配给程序的资源和环境；
+    *进程：执行中的程序
+      一个进程可以包含一个或多个线程，但至少要包含一个；
+    *单线程：程序中只存在一个线程，实际上主方法就是一个主线程；
+    *多线程：一个程序中运行多个任务；目的是更好的利用CPU资源；
+  2.线程的实现
+    *在Java中，线程的实现有两种：
+      1.继承Thread类
+        *Thread类：定义在java.lang包中，继承Thread类必须重写run()方法；
+      2.实现Runnable接口
+    *线程的启动是通过start()方法，而不是run()方法；
+  3.线程的状态
+    *线程也有固定的操作状态：
+      1.创建状态：准备好了一个多线程的对象
+      2.就绪状态：调用了start()方法，等待CPU进行调度
+      3.运行状态：执行run()方法
+      4.阻塞状态：暂时停止执行，可能将资源交给其他线程使用
+      5.终止状态（死亡状态）：线程销毁
+  4.线程的常用方法
+    1.取得线程名称：getName()
+    2.取得当前线程对象:currentThread()
+    3.判断线程是否启动:isAlive()
+    4.线程的强行运行:join()
+    5.线程的休眠:sleep()
+    6.线程的礼让:yield()
+  5.线程的优先级
+    1.优先级顺序设置：
+      1-MIN_PRIORITY
+      10-MAX_PRIORITY
+      5-NORM_PRIORITY
+      什么都不设置默认值是5
+  6.同步与死锁
+    1.同步代码块：在代码块上加上"synchronized"关键字，则此代码块就称为同步代码块
+    2.同步代码块格式：
+      synchronized(同步对象){
+        需要同步的代码块;
+      }
+    3.同步方法：除了代码块可以同步，方法也可以
+    4.方法同步格式：
+      synchronized 访问修饰符(可选) void 方法名称(){}
+    5.需要使用同步的情况：需要资源共享的环境
+    6.死锁：需求冲突
+  7.线程的生命周期
+================================================================================
+Java 反射机制：
+1.反射机制概述：
+  1.反射机制背景概述：
+    1）Reflection也就是反射，是Java被视为动态（或准动态）语言的一个关键性质；
+    2）反射机制指的是程序在运行时能够获取任何类的内部所有信息；
+  2.反射机制的实现功能概述：
+    1）只要给定类的全名，即可通过反射获取类的所有信息；
+    2）反射可以在程序运行时获取任意一个对象所属的类对象；
+    3）在运行时可以获取到类中所有属性对象，并对其操作（包括私有属性）；
+    4）在运行时可以获取到类中、父类中所有方法，并调用；
+    5）目前主流的应用框架如Struts2、Hibernate、Spring、SpringMVC等框架的核心全部是利用
+      Java的反射机制来实现的。
+================================================================================
+Java中的XML操作：
+  1.XML数据格式简介
+  XML，即可扩展编辑语言(Extensible Markup Language)，标准通用标记语言的子集，一种用于标记
+  电子文件使其具有结构性的标记语言。它可以用来标记数据、定义数据类型，是一种允许用户对子集的标记
+  语言进行定义的源语言。它非常适合万维网传输，提供同一的方法来描述和交换应用程序或供应商的结构化
+  数据。
+    *XML是一种标记语言，很类似于HTML
+    *XML的设计宗旨是传输数据，而非显示数据
+    *XML标签没有被预定义，需要用户自行定义
+    *XML被设计为具有自我描述性
+    *XML是W3C的推荐标准
+  XML与HTML：
+    XML和HTML为不同的目的而设计：
+      *XML被设计为传输和存储数据，其焦点是数据的内容
+      *HTML被设计为显示数据，其焦点是数据的外观
+  XML的特点：
+    *XML仅仅是纯文本
+    *XML没有预定义的标签
+  XML的语法规则：
+    *标签对大小写敏感
+    *所有标签必须有关闭标签
+    *必须正确嵌套
+    *必须有根元素
+    *属性值必须加引号
+    *空格会被保留
+  2.使用Java读取XML数据
+  3.使用Java创建XML数据
+  4.使用Dom4j操作XML数据
+================================================================================
+Java中的JSON操作：
+JSON简介：
+  JSON：JavaScript对象表示法(JavaScript Object Notation)
+  是存储和交换信息的语法
+    *是轻量级的文本数据交换格式
+    *独立于语言和平台
+    *具有自我描述性，更易理解
+  JSON与XML：
+    *比XML更小、更快、更易理解
+    *没有结束标签
+    *读写速度更快
+    *使用数组
+    *不适用保留字
+  JSON语法是JavaScript对象表示法的子集
+    *数据在 名称/值 对中
+    *数据由逗号分隔
+    *花括号保存对象
+    *方括号保存数组
+  JSON值可以是：
+    *数字(整数或浮点数)
+    *字符串(在双引号中)
+    *逻辑值(true或false)
+    *数组(在方括号中)
+      数组可以包含多个对象
+        {
+          "employees":[
+            {"FirstName":"John","lastName":"Doe"},
+            {"FirstName":"Anna","lastName":"Smith"},
+            {"FirstName":"Peter","lastName":"Jones"}
+          ]
+        }
+    *对象(在花括号中)
+      对象可以包含多个 名称/值 对
+        {"FirstName":"John","lastName":"Doe"}
+    *null
 ================================================================================
 Java的时间日期：
   Date类（不推荐）
