@@ -1,0 +1,13 @@
+首先在home目录下新建一个名为Ubuntu.po的文件
+然后编辑文件，加入如下两行：
+
+msgid "Ubuntu Desktop"
+msgstr "自定义文字"
+
+保存退出
+打开终端执行命令：
+
+cd /usr/share/locale/zh_CN/LC_MESSAGES
+sudo msgfmt -o unity.mo ~/Ubuntu.po
+
+搞定。have fun！
