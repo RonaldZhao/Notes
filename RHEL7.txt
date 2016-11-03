@@ -1,0 +1,66 @@
+第0章.前言
+    开源共享精神：
+        坦白来讲，每个从事Linux行业的技术人都从骨子里有一种独特的情怀，听到开源产品的兴起就会由衷的自豪。开源企业不单纯是
+        为了利益，而是相互扶持，让开源软件越来越完善，根基越来越强大，开源社区越来越有人气。开源软件简单来说就是可以不受限
+        制的使用某个软件并且随意修改，甚至修改成自己的产品再发布出去。所以开源软件一般会将软件程序和源代码一起提供给用户。
+
+    最热门的六种开源许可证：
+                                        他人修改源代码后是否可以闭源？
+                                                    ||
+                                                    ||
+                               ||======NO===========||==========YES======||
+                               ||                                        ||
+                               ||                                        ||
+                新增代码是否采用同样的许可证？         每一个修改的文件，是否都必须放置版权说明？
+                               ||                                        ||
+                               ||                                        ||
+                 ======NO======||======YES======           ======NO======||======YES==================
+                 ||                           ||           ||                                        ||
+                 ||                           ||           ||                                        ||
+                 ||                           ||           ||                                        ||
+    是否需要对源代码的修改之处，提供说明文档？    ||   衍生软件的广告,是否可以用你的名字促销?               ||
+    ||                                        ||                      ||                             ||
+    ||                                        ||                      ||                             ||
+    ======NO======||======YES======           ||        ======NO======||======YES======              ||
+    ||                           ||           ||        ||                           ||              ||
+    ||                           ||           ||        ||                           ||              ||
+    LGPL许可证              Mozilla许可证   GPL许可证  BSD许可证                    MIT许可证       Apache许可证
+
+    开源软件的特性：使用自由、修改自由、重新发布自由、创建衍生品自由
+
+    重要的守护进程：
+    守护进程(Daemon)通常会随系统启动时激活并随系统关闭时停止，一直在系统后台中默默为用户提供服务：
+    守护进程名称      用处
+    crond            计划任务
+    dhcpd            动态IP地址分配服务(DHCP)
+    httpd            网站服务
+    lpd              打印服务
+    named            域名解析服务(DNS)
+    nfs              文件共享服务(NFS)
+    smb              文件共享与打印服务(SAMBA)
+    syslog           系统日志
+    gpm              鼠标进程
+
+    红帽软件包管理器(RPM)：
+    RPM=Redhat Package Manager
+    安装软件：rpm -ivh filename.rpm
+    升级软件：rpm -Uvh filename.rpm
+    卸载软件：rpm -e filename.rpm
+    查询软件的描述信息：rpm -qpi filename.rpm
+    列出软件的文件信息：rpm -qpl filename.rpm
+    查询文件属于哪个RPM：rpm -qf filename.rpm
+
+    YUM:
+    列出所有仓库：yum repolist all
+    列出仓库中所有软件包：yum list all
+    查看软件包信息：yum info packagename
+    安装软件包：yum install packagename
+    重新安装软件包：yum reinstall packagename
+    升级软件包：yum update packagename
+    移除软件包：yum remove packagename
+    清除所有仓库缓存：yum clean alla
+    检查可更新的软件包：yum check-update
+    查看系统中已经安装的软件包组：yum grouplist
+    安装指定的软件包组：yum groupinstall groupname
+    移除指定的软件包组：yum groupremove groupname
+    查询指定的软件包组信息：yum groupinfo groupname

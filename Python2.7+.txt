@@ -1,0 +1,33 @@
+Python对象：
+    pickle，腌制：在Python中如果我们有一些对象需要持久性存储，并且不丢失我们这个对象的类型与数据，我们则需要将这些对象进行序列化，序列化之后，需要使用的时候，
+我们再回复为原来的数据。序列化的这种过程，我们将其称为pickle(腌制)。
+    例如：
+        #pickle腌制
+        
+        import pickle
+        
+        #dumps(object)：函数，将对象序列化
+        lista = ["mingyue", "jishi", "you"]
+        listb = pickle.dumps(lista)
+        print(listb)
+        
+        #loads(string)：函数，将对象原样恢复，并且对象类型也恢复为原来的格式
+        listc = pickle.loads(listb)
+        print(listc)
+        
+        #dump(objext, file)：函数，将对象存储到文件里面序列化
+        group1 = ("bajiu", "wen", "qingtian")
+        f1 = file('1.pk1', 'wb')
+        pickle.dump(group1, f1, True)
+        f1.close()
+        
+        #load(object, file)：将dump()存储在文件里面的数据恢复
+        f2 = file('1.pk1', 'rb')
+        t = pickle.load(f2)
+        print(t)
+        f2.close()
+逻辑行与物理行：
+行中分号的使用规则：
+    在Python中一个物理行一般可以包括多个逻辑行，在一个物理行中编写多个逻辑行的时候，逻辑行与逻辑行之间用分号隔开。每个逻辑行的后面必须有一个分号。但是如果一个逻辑行
+占了一个逻辑行的最后，那么这个逻辑行的分号可以省略。
+行连接：在行末加一个 \ 字符

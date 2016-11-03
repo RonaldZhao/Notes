@@ -1,0 +1,7 @@
+linux下部署web2py：
+    1.到http://www.web2py.com/init/default/download 下载web2py
+    2.解压缩下载的包并移动到自己的目录
+    3.如果需要访问GUI的话需要安装python的tk库：
+        sudo apt-get install python-tk
+    4.cd ../web2py/
+    5.python web2py.py

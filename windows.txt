@@ -1,0 +1,16 @@
+windows的字符串函数：
+    通用版本            C语言中的ASCII码版本
+    lstrlen             strlen
+    lstrcpy             strcpy
+    lstrcpyn            strcpyn
+    lstrcat             strcat
+    lstrcmp             strcmp
+    lstrcmpi            strcmpi
+Windows编程模型：
+    *事件驱动编程模型
+    *一切都是窗口：窗口和句柄
+    *消息与消息队列
+
+    windows编程是很复杂的：
+        *windows是一个事件驱动的、基于消息的操作系统，消息是核心，任何一个操作都是接受消息的直接结果
+        *windows里有许多不同的API函数和许多不同的消息类型，使得windows开发更加复杂
