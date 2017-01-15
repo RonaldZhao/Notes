@@ -31,3 +31,43 @@ Python对象：
     在Python中一个物理行一般可以包括多个逻辑行，在一个物理行中编写多个逻辑行的时候，逻辑行与逻辑行之间用分号隔开。每个逻辑行的后面必须有一个分号。但是如果一个逻辑行
 占了一个逻辑行的最后，那么这个逻辑行的分号可以省略。
 行连接：在行末加一个 \ 字符
+
+字节编译：
+    把模块编译成二进制语言程序的过程叫字节编译，这个过程会产生一个与模块对应的 .pyc 文件。
+
+Web开发概述：
+    采用 MVC 设计Web应用：
+        M：Model，模型，存储Web应用数据的代码
+        V：View，视图，格式化和显示Web应用的用户界面的代码
+        C：Controller，控制器，将We吧应用粘合在一起并提供业务逻辑的代码
+    CGI：Common Gateway Interface，通用网关接口，可以让一个客户端从网页浏览器向服务器请求数据。这是描述客户端和服务器程序之间传输数据的一种标准。
+        CGI 是运行在服务器上的程序，提供客户端 HTML 页面的接口。
+        CGI 的工作原理：
+            1.浏览器访问URL并连接到web服务器
+            2.web服务器接收到请求信息后解析URL，并查找访问的文件在服务器上是否存在，如果存在就返回文件的内容，否则返回错误信息。
+            3.浏览器从服务器上接受信息，并显示信息的内容或错误信息
+        CGI中 的环境变量：
+            CONTENT_TYPE：指示传递来信息的类型
+            HTTP_COOKIE：客户机的COOKIE内容
+            REMOTE_ADDR：发送请求的客户机的IP地址
+            REQUEST_METHOD：脚本被调用的方法，如GE和POST方法
+
+Web应用的结构：
+    Web应用结构概述：
+        前端程序：HTML、CSS、JS
+        后台程序：Python、PHP、JSP
+        数据库：MySQL、MongoDB
+
+Python中的web服务器：
+    Python自带的web服务器：
+        Python自带的可以建立简单的web服务器
+        BaseHTTPServer：提供基本的web服务和处理类
+        SimpleHTTPServer：包含执行GET请求的SimpleHTTPRequestHandler类
+        CGIHTTPServer：包含处理POST请求和执行的CGIHTTPRequestHandler类
+
+开发CGI程序的步骤：
+    1.创建目录
+    2.编写CGI程序
+    3.开启服务器
+    4.使用浏览器访问
+
